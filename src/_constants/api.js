@@ -1,0 +1,6 @@
+export const LOGIN_API="/login"
+export const LOGOUT_API="/logOut"
+export const FETCH_USERS_API="/listAll"
+export const CREATE_USERS_API="/create"
+export const EDIT_USER_API="/edit"
+export const SEARCH_USER_API="/search"
