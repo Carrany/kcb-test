@@ -43,7 +43,6 @@ const AppUsersList = () => {
 
   const onClickEdit = useCallback(
     (editData) => () => {
-      console.log(editData);
       setIsEdit(true);
       toggle();
       setModalData(editData);
@@ -75,6 +74,7 @@ const AppUsersList = () => {
         open={open}
         modalData={modalData}
         toggle={toggle}
+        onSuccess={getUsers}
       />
       <Title level={3}>Users List</Title>
       <Flex align="center" justify="end">

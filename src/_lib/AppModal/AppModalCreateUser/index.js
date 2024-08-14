@@ -8,14 +8,13 @@ import { StyledAppModalForm } from "../index.styled";
 import { bomaYanguService } from "_services";
 
 const AppModalCreateUser = (props) => {
-  const { open, toggle, modalData, isEdit } = props;
+  const { open, toggle, modalData, isEdit, onSuccess } = props;
 
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
     if (!modalData) return;
-    console.log(modalData, "here");
     form.setFieldsValue(modalData);
   }, [form, modalData]);
 
@@ -26,11 +25,12 @@ const AppModalCreateUser = (props) => {
         await bomaYanguService.createUser({ payload: values });
         setLoading(false);
         toggle();
+        onSuccess()
       } catch (error) {
         setLoading(false);
       }
     },
-    [toggle]
+    [onSuccess, toggle]
   );
 
   const handleEditUser = useCallback(
@@ -43,11 +43,12 @@ const AppModalCreateUser = (props) => {
         });
         toggle();
         setLoading(false);
+        onSuccess()
       } catch (error) {
         setLoading(false);
       }
     },
-    [modalData, toggle]
+    [modalData, onSuccess, toggle]
   );
 
   const onFinish = useCallback(
